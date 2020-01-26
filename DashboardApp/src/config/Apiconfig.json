@@ -1,0 +1,5 @@
+{
+  "restaurant": {
+    "search": "search?entity_type=city&start=1&count=20"
+  }
+}

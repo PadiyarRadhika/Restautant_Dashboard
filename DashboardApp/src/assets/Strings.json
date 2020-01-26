@@ -1,0 +1,20 @@
+{
+  "graph": {
+    "_graph_screen_header": "Restaurant Dataset Graph",
+    "_bar_chart_description": "Bar chart for Price range vs/ Average cost per person",
+    "_line_chart_description": "Line Chart for price range vs/ count of price for all restaurants",
+    "_pie_chart_description": "Pie Chart for price range vs/ count of price for all restaurants"
+  },
+  "general": {
+    "Cancel": "Cancel",
+    "OK": "OK",
+    "Update": "Update",
+    "_delete_warning_msg": "Are you sure you want to delete?",
+    "error_msg": "Oops!!Something went wrong. Please come back after some time"
+  },
+  "restaurant": {
+    "_edit_restaurant_name_msg": "Edit the restaurant name",
+    "_no_name_error_msg": "Please add a name to your restaurant",
+    "_no_listing_error_msg": "No Restaurants List Available at the moment"
+  }
+}
