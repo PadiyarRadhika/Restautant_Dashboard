@@ -1,45 +1,44 @@
-**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
+### How do I get set up? ###
 
-When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
+Ensure you have node, yarn, brew, watchman, cocoapods installed
 
-*We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket.*
+To run the project, you will need Node, Watchman, React-Native CLI and Xcode or Android SDK depending on your chosen platform, you can install these using Homebrew
 
----
+brew install node
 
-## Edit a file
+brew install watchman
 
-You’ll start by editing this README file to learn how to edit a file in Bitbucket.
+Node comes with npm, you can use Yarn if you prefer or any other package manager.
 
-1. Click **Source** on the left side.
-2. Click the README.md link from the list of files.
-3. Click the **Edit** button.
-4. Delete the following text: *Delete this line to make a change to the README from Bitbucket.*
-5. After making your change, click **Commit** and then **Commit** again in the dialog. The commit page will open and you’ll see the change you just made.
-6. Go back to the **Source** page.
+npm install -g react-native-cli
 
----
+Android SDK or Xcode
+Get Xcode from the Mac App Store
 
-## Create a file
 
-Next, you’ll add a new file to this repository.
+### About the app ###
 
-1. Click the **New file** button at the top of the **Source** page.
-2. Give the file a filename of **contributors.txt**.
-3. Enter your name in the empty file space.
-4. Click **Commit** and then **Commit** again in the dialog.
-5. Go back to the **Source** page.
+It's a Reaact Native Dashboard App with restaurant names listing it's relavant details represented in graphs
 
-Before you move on, go ahead and explore the repository. You've already seen the **Source** page, but check out the **Commits**, **Branches**, and **Settings** pages.
+Restaurnts List Screen :
 
----
+1.This screen consists of restaurants listed. 
 
-## Clone a repository
+2.Each restaurant card has it's featured image displayed, it's name and it's highlighted cuisines listed.
 
-Use these steps to clone from SourceTree, our client for using the repository command-line free. Cloning allows you to work on your files locally. If you don't yet have SourceTree, [download and install first](https://www.sourcetreeapp.com/). If you prefer to clone from the command line, see [Clone a repository](https://confluence.atlassian.com/x/4whODQ).
+3.The user has option to add new restaurant name. 
 
-1. You’ll see the clone button under the **Source** heading. Click that button.
-2. Now click **Check out in SourceTree**. You may need to create a SourceTree account or log in.
-3. When you see the **Clone New** dialog in SourceTree, update the destination path and name if you’d like to and then click **Clone**.
-4. Open the directory you just created to see your repository’s files.
+4.User can also edit or delete the existing restaurant listed.
 
-Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
+Graph Screen : 
+
+1.Graphs screen consists of 3 different types of graphs of the restaurnats displayed in the listing screen
+
+2.Bar Chart for Price range and average cost per person
+
+3.Line Chart for price range and count of price for all restaurants
+
+4.Pie chart for price range and count of price of all restaurants
+
+
+
