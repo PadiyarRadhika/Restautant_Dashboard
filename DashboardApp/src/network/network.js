@@ -1,5 +1,4 @@
-/* Copyright Noon© 2018
-Written under contract by Robosoft Technologies Pvt. Ltd. */
+
 
 import axios from "axios";
 
