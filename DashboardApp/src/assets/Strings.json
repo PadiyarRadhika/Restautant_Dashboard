@@ -6,6 +6,7 @@
     "_pie_chart_description": "Pie Chart for price range vs/ count of price for all restaurants"
   },
   "general": {
+    "Add": "Add",
     "Cancel": "Cancel",
     "OK": "OK",
     "Update": "Update",
@@ -13,6 +14,7 @@
     "error_msg": "Oops!!Something went wrong. Please come back after some time"
   },
   "restaurant": {
+    "_add_restaurant_name_msg": "Add the restaurant name",
     "_edit_restaurant_name_msg": "Edit the restaurant name",
     "_no_name_error_msg": "Please add a name to your restaurant",
     "_no_listing_error_msg": "No Restaurants List Available at the moment"

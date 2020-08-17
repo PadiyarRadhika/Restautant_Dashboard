@@ -6,7 +6,7 @@ import {
   SafeAreaView,
   FlatList,
   TouchableOpacity,
-  ActivityIndicator
+  ActivityIndicator,
 } from "react-native";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -27,14 +27,14 @@ export class RestaurantsListC extends Component {
       restaurantListData: null,
       displayEditModal: false,
       isEditRestaurantName: false,
-      isLoading: true
+      isLoading: true,
     };
   }
   componentDidMount() {
     if (this.props.restaurantData && this.props.restaurantData.length > 0) {
       this.setState({
         restaurantListData: this.props.restaurantData,
-        isLoading: false
+        isLoading: false,
       });
     }
     this.fetchRestaurantData();
@@ -49,14 +49,14 @@ export class RestaurantsListC extends Component {
   fetchRestaurantData() {
     const { actions } = this.props;
     DashboardService.getRestaurantData().then(
-      responseData => {
+      (responseData) => {
         if (responseData) {
           // set it to redux store
           this.setState({ isLoading: false });
           actions.onSetRestaurantData(responseData.restaurants);
         }
       },
-      err => {
+      (err) => {
         this.setState({ isLoading: false });
       }
     );
@@ -71,7 +71,6 @@ export class RestaurantsListC extends Component {
 
   onDeleteRestaurantConfirmed(deleteItem) {
     const { actions } = this.props;
-
     actions.onDeleteRestaurant(this.state.restaurantListData, deleteItem);
   }
 
@@ -79,7 +78,7 @@ export class RestaurantsListC extends Component {
     this.setState({
       displayEditModal: true,
       deleteItem: deleteItem,
-      isEditRestaurantName: true
+      isEditRestaurantName: true,
     });
   }
 
@@ -97,10 +96,10 @@ export class RestaurantsListC extends Component {
     return (
       <RestaurantCard
         restaurantItemData={item.restaurant}
-        onDeleteConfirm={deleteItem => {
+        onDeleteConfirm={(deleteItem) => {
           this.onDeleteRestaurantConfirmed(deleteItem);
         }}
-        onEditConfirm={deleteItem => {
+        onEditConfirm={(deleteItem) => {
           this.onEditRestaurantNameConfirmed(deleteItem);
         }}
       />
@@ -137,7 +136,7 @@ export class RestaurantsListC extends Component {
         onPress={() => {
           this.setState({
             displayEditModal: true,
-            isEditRestaurantName: false
+            isEditRestaurantName: false,
           });
         }}
       >
@@ -154,23 +153,23 @@ export class RestaurantsListC extends Component {
         onEditModalClose={() => {
           this.setState({ displayEditModal: false });
         }}
-        onUpdate={updatedItem => {
+        onUpdate={(updatedItem) => {
           this.setState(
             {
               displayEditModal: false,
               isEditRestaurantName: false,
-              deleteItem: null
+              deleteItem: null,
             },
             () => {
               this.onUpdateRestaurantItem(updatedItem);
             }
           );
         }}
-        onAddNew={newItem => {
+        onAddNew={(newItem) => {
           this.setState(
             {
               displayEditModal: false,
-              isEditRestaurantName: false
+              isEditRestaurantName: false,
             },
             () => {
               this.onAddRestaurantName(newItem);
@@ -204,14 +203,14 @@ export class RestaurantsListC extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    actions: bindActionCreators(RestaurantListAction, dispatch)
+    actions: bindActionCreators(RestaurantListAction, dispatch),
   };
 };
 
-const mapStateToProps = state => ({
-  restaurantData: state.restauantDataReducer.restaurantData
+const mapStateToProps = (state) => ({
+  restaurantData: state.restauantDataReducer.restaurantData,
 });
 export const RestaurantsList = connect(
   mapStateToProps,
@@ -222,18 +221,18 @@ const styles = StyleSheet.create({
   emptylistText: {
     color: Colors.warningColor,
     fontSize: scale(14),
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   emptyListContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: scale(100)
+    marginTop: scale(100),
   },
   plusIconStyle: {
     fontSize: scale(20),
     fontWeight: "bold",
-    color: Colors.white
+    color: Colors.white,
   },
   addButtonConatiner: {
     flex: 1,
@@ -245,6 +244,6 @@ const styles = StyleSheet.create({
     borderRadius: scale(30),
     backgroundColor: Colors.primaryColor,
     alignItems: "center",
-    justifyContent: "center"
-  }
+    justifyContent: "center",
+  },
 });

@@ -5,7 +5,7 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Alert
+  Alert,
 } from "react-native";
 import PropTypes from "prop-types";
 
@@ -26,14 +26,14 @@ export class RestaurantCard extends Component {
         {
           text: Strings.general.Cancel,
           onPress: () => {},
-          style: "cancel"
+          style: "cancel",
         },
         {
           text: Strings.general.OK,
           onPress: () => {
             this.props.onDeleteConfirm(restaurantItemData);
-          }
-        }
+          },
+        },
       ],
       { cancelable: false }
     );
@@ -42,17 +42,18 @@ export class RestaurantCard extends Component {
   onEditPress(deleteItem) {
     this.props.onEditConfirm(deleteItem);
   }
+
   render() {
     const { restaurantItemData } = this.props;
     if (restaurantItemData) {
       return (
         <View style={styles.maincontainer}>
-          {restaurantItemData.featured_image && (
+          {restaurantItemData.featured_image ? (
             <Image
               source={{ uri: restaurantItemData.featured_image }}
               style={styles.featuredImageStyle}
             />
-          )}
+          ) : null}
           <View style={styles.restaurantInfoContainer}>
             <View style={styles.restaurantNameContainer}>
               {restaurantItemData.name ? (
@@ -63,7 +64,7 @@ export class RestaurantCard extends Component {
                 <Text
                   style={[
                     styles.restaurantNAmeTextStyle,
-                    { color: Colors.warningColor }
+                    { color: Colors.warningColor },
                   ]}
                   numberOfLines={2}
                 >
@@ -76,7 +77,7 @@ export class RestaurantCard extends Component {
                   this.onEditPress(restaurantItemData);
                 }}
               >
-                <Image source={Images.editIcon} style={styles.iconStyle} />
+                <Image source={Images.editIcon} style={styles.editIconStyle} />
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.deleteButtonContainer}
@@ -87,11 +88,11 @@ export class RestaurantCard extends Component {
                 <Image source={Images.deleteIcon} style={styles.iconStyle} />
               </TouchableOpacity>
             </View>
-            {restaurantItemData.cuisines && (
+            {restaurantItemData.cuisines ? (
               <Text style={styles.cuisinesTextStyle}>
                 {restaurantItemData.cuisines}
               </Text>
-            )}
+            ) : null}
           </View>
         </View>
       );
@@ -102,51 +103,52 @@ export class RestaurantCard extends Component {
 RestaurantCard.defaultProps = {
   restaurantItemData: {},
   onDeleteConfirm: () => {},
-  onEditConfirm: () => {}
+  onEditConfirm: () => {},
 };
 
 RestaurantCard.propTypes = {
   restaurantItemData: PropTypes.object.isRequired,
   onDeleteConfirm: PropTypes.func,
-  onEditConfirm: PropTypes.func
+  onEditConfirm: PropTypes.func,
 };
 
 const styles = StyleSheet.create({
+  editIconStyle: { height: scale(30), width: scale(30) },
   cuisinesTextStyle: {
     fontSize: scale(12),
     color: Colors.placeholderText,
-    fontWeight: "600"
+    fontWeight: "600",
   },
   iconStyle: { height: scale(20), width: scale(20) },
   editButtonContainer: {
-    padding: scale(10),
+    padding: scale(5),
     backgroundColor: Colors.secondaryColor,
     borderRadius: scale(4),
     alignItems: "center",
     justifyContent: "center",
-    marginHorizontal: scale(10)
+    marginHorizontal: scale(10),
   },
   deleteButtonContainer: {
     padding: scale(10),
     backgroundColor: Colors.warningColor,
     borderRadius: scale(4),
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   restaurantNAmeTextStyle: {
     flex: 1,
     fontSize: scale(18),
     fontWeight: "bold",
-    color: Colors.secondaryColor
+    color: Colors.secondaryColor,
   },
   restaurantNameContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: scale(5)
+    marginBottom: scale(5),
   },
   restaurantInfoContainer: {
     paddingHorizontal: scale(20),
-    paddingVertical: scale(10)
+    paddingVertical: scale(10),
   },
   featuredImageStyle: { height: scale(100), width: "100%" },
   maincontainer: {
@@ -154,6 +156,6 @@ const styles = StyleSheet.create({
     borderRadius: scale(4),
     borderColor: Colors.border,
     borderWidth: 2,
-    marginVertical: scale(10)
-  }
+    marginVertical: scale(10),
+  },
 });

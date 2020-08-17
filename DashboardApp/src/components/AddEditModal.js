@@ -6,7 +6,7 @@ import {
   Text,
   TextInput,
   TouchableHighlight,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 import PropTypes from "prop-types";
 
@@ -20,7 +20,7 @@ export class AddEditModal extends Component {
     super(props);
     this.state = {
       deleteItem: this.props.deleteItem ? this.props.deleteItem : null,
-      addItem: null
+      addItem: null,
     };
   }
 
@@ -30,7 +30,7 @@ export class AddEditModal extends Component {
     }
   }
 
-  onRestaurantNameEdit = text => {
+  onRestaurantNameEdit = (text) => {
     if (this.state.deleteItem) {
       let copyDeleteItem = JSON.parse(JSON.stringify(this.state.deleteItem)); // create a clone item to avoid reference issue
       copyDeleteItem.name = text;
@@ -58,7 +58,9 @@ export class AddEditModal extends Component {
         }}
         style={styles.submitButtonContainer}
       >
-        <Text style={styles.updateTextStyle}>{Strings.general.Update}</Text>
+        <Text style={styles.updateTextStyle}>
+          {isEditRestaurantName ? Strings.general.Update : Strings.general.Add}
+        </Text>
       </TouchableOpacity>
     );
   }
@@ -88,14 +90,16 @@ export class AddEditModal extends Component {
           <View style={styles.innerConatiner}>
             <View style={styles.textinputWrapper}>
               <Text style={styles.headerTitleStyle}>
-                {Strings.restaurant._edit_restaurant_name_msg}
+                {this.props.isEditRestaurantName
+                  ? Strings.restaurant._edit_restaurant_name_msg
+                  : Strings.restaurant._add_restaurant_name_msg}
               </Text>
               <TextInput
                 maxLength={50}
                 value={this.getInputValue()}
                 style={styles.textInputStyle}
                 underlineColorAndroid="transparent"
-                onChangeText={text => {
+                onChangeText={(text) => {
                   this.onRestaurantNameEdit(text);
                 }}
                 autoFocus={true}
@@ -117,7 +121,7 @@ AddEditModal.defaultProps = {
   visible: false,
   onEditModalClose: () => {},
   onUpdate: () => {},
-  onAddNew: () => {}
+  onAddNew: () => {},
 };
 
 AddEditModal.propTypes = {
@@ -125,7 +129,7 @@ AddEditModal.propTypes = {
   visible: PropTypes.bool.isRequired,
   onEditModalClose: PropTypes.func,
   onUpdate: PropTypes.func,
-  onAddNew: PropTypes.func
+  onAddNew: PropTypes.func,
 };
 
 const styles = StyleSheet.create({
@@ -133,41 +137,41 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.textinputBg,
     padding: scale(20),
     alignItems: "center",
-    marginVertical: scale(10)
+    marginVertical: scale(10),
   },
   headerTitleStyle: { fontSize: scale(20), fontWeight: "700" },
   textinputWrapper: {
     backgroundColor: Colors.white,
     paddingVertical: scale(20),
-    paddingHorizontal: scale(10)
+    paddingHorizontal: scale(10),
   },
   updateTextStyle: {
     color: Colors.white,
     fontWeight: "bold",
-    fontSize: scale(14)
+    fontSize: scale(14),
   },
   submitButtonContainer: {
     padding: scale(10),
     backgroundColor: Colors.secondaryColor,
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: scale(20)
+    marginBottom: scale(20),
   },
   innerConatiner: {
     backgroundColor: Colors.white,
     width: "100%",
-    padding: scale(20)
+    padding: scale(20),
   },
   textStyle: {
     fontWeight: "bold",
     fontSize: scale(20),
     color: Colors.white,
-    textAlign: "center"
+    textAlign: "center",
   },
   mainModalContainer: {
     flex: 1,
     backgroundColor: "rgba(0,0,0,0.65)",
     justifyContent: "center",
-    alignItems: "center"
-  }
+    alignItems: "center",
+  },
 });
