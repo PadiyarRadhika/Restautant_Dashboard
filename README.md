@@ -32,7 +32,7 @@ Restaurnts List Screen :
 
 Graph Screen : 
 
-1.Graphs screen consists of 3 different types of graphs of the restaurnats displayed in the listing screen
+1.Graphs screen consists of 3 different types of graphs of the restaurants displayed in the listing screen
 
 2.Bar Chart for Price range and average cost per person
 
