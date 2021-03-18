@@ -1,26 +1,30 @@
 ### How do I get set up? ###
 
-Ensure you have node, yarn, brew, watchman, cocoapods installed
+-> Ensure you have node, yarn, brew, watchman, cocoapods installed
 
-To run the project, you will need Node, Watchman, React-Native CLI and Xcode or Android SDK depending on your chosen platform, you can install these using Homebrew
+-> To run the project, you will need 
+   Node, 
+   Watchman, 
+   React-Native CLI 
+   Xcode /  Android SDK depending on your chosen platform, you can install these using Homebrew
 
-brew install node
+-> brew install node
 
-brew install watchman
+-> brew install watchman
 
-Node comes with npm, you can use Yarn if you prefer or any other package manager.
+-> Node comes with npm, you can use Yarn if you prefer or any other package manager.
 
-npm install -g react-native-cli
+-> npm install -g react-native-cli
 
-Android SDK or Xcode
-Get Xcode from the Mac App Store
+-> Android SDK or Xcode
+-> Get Xcode from the Mac App Store
 
 
 ### About the app ###
 
-It's a Reaact Native Dashboard App with restaurant names listing it's relavant details represented in graphs
+It's a React Native Dashboard App with restaurant names listing it's relavant details represented in graphs.
 
-Restaurnts List Screen :
+Restaurant List Screen :
 
 1.This screen consists of restaurants listed. 
 
