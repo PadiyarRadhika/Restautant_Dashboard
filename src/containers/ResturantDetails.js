@@ -10,12 +10,17 @@ import {
   ImageBackground,
   ScrollView,
   Dimensions,
+  SectionList,
 } from "react-native";
 
-import { SmartImage } from "../components";
+import Icon from "react-native-vector-icons/MaterialIcons";
+
 import { Colors } from "@app/index.js";
 import { scale } from "@utilities";
 import { Images } from "../assets/images";
+import { Rating } from "../components";
+import Overview from "../components/Overview";
+import HighLights from "../components/Highlights";
 
 const screenWidth = Dimensions.get("window").width;
 const SPACE = " ";
@@ -45,9 +50,25 @@ export class RestaurantDetails extends Component {
         }
       >
         <View style={styles.headerContentWrapper}>
-          {!!restaurantDetails.name && (
-            <Text style={styles.restNameStyle}>{restaurantDetails.name}</Text>
-          )}
+          <View
+            style={{
+              flexDirection: "row",
+            }}
+          >
+            {!!restaurantDetails.name && (
+              <Text style={[styles.restNameStyle, { flex: 1 }]}>
+                {restaurantDetails.name}
+              </Text>
+            )}
+            {!!restaurantDetails.user_rating &&
+              !!restaurantDetails.user_rating.aggregate_rating && (
+                <Rating
+                  ratingValue={parseInt(
+                    restaurantDetails.user_rating.aggregate_rating
+                  )}
+                />
+              )}
+          </View>
           {!!restaurantDetails.cuisines && (
             <Text style={styles.cuisinesTextStyle}>
               {restaurantDetails.cuisines}
@@ -59,75 +80,20 @@ export class RestaurantDetails extends Component {
   };
 
   renderTabContents = () => {
+    const { activeHeaderIndex, restaurantDetails } = this.state;
+    console.log(activeHeaderIndex, "activeHeaderIndex");
     switch (this.state.activeHeaderIndex) {
       case 0:
-        return this.renderOverView();
+        return <Overview restaurantDetails={restaurantDetails} />;
       case 1:
-        return this.renderReviews();
-      case 2:
-        return this.renderMenu();
-      case 3:
-        return this.renderPhotos();
+        return <HighLights restaurantDetails={restaurantDetails} />;
+      default:
+        return null;
     }
   };
 
-  renderOverView() {
-    const { restaurantDetails } = this.state;
-    return (
-      <View style={{ padding: scale(20) }}>
-        <Text style={styles.basicHeaderTextStlye}>Main Highlights</Text>
-        {restaurantDetails.highlights &&
-          restaurantDetails.highlights.map((item, index) => (
-            <View key={index} style={{ paddingVertical: scale(5) }}>
-              <Text style={styles.basicHeaderDescStyle}>{"* " + item}</Text>
-            </View>
-          ))}
-        {restaurantDetails.timings && (
-          <View style={{ paddingVertical: scale(8) }}>
-            <Text style={styles.basicHeaderTextStlye}>Timings</Text>
-            <Text style={styles.basicHeaderDescStyle}>
-              {restaurantDetails.timings}
-            </Text>
-          </View>
-        )}
-        {restaurantDetails.location && restaurantDetails.location.address && (
-          <View style={{ padding: scale(8) }}>
-            <Text style={styles.basicHeaderTextStlye}>Location</Text>
-            <Text style={styles.basicHeaderDescStyle}>
-              {restaurantDetails.location.address +
-                SPACE +
-                restaurantDetails.location.city}
-            </Text>
-          </View>
-        )}
-      </View>
-    );
-  }
-  renderReviews() {
-    return (
-      <View>
-        <Text>{"renderReviews"}</Text>
-        <Text />
-      </View>
-    );
-  }
-  renderMenu() {
-    return (
-      <View>
-        <Text />
-      </View>
-    );
-  }
-  renderPhotos() {
-    return (
-      <View>
-        <Text />
-      </View>
-    );
-  }
-
   renderTabHeaders = () => {
-    const tabHeaderItems = ["Overview", "Reviews", "Menu", "Photos"];
+    const tabHeaderItems = ["Overview", "Main Highlights"];
     const { activeHeaderIndex } = this.state;
     return (
       <ScrollView
@@ -166,22 +132,18 @@ export class RestaurantDetails extends Component {
     return (
       <View>
         {this.renderTabHeaders()}
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          bounces={false}
-          style={{}}
-        >
+        <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
           {this.renderTabContents()}
         </ScrollView>
       </View>
     );
   };
+
   render() {
     return this.state.restaurantDetails ? (
-      <View style={{ flex: 1 }}>
+      <View>
         {this.renderHeader()}
         {this.renderContents()}
-        <View />
       </View>
     ) : (
       <View />
@@ -190,6 +152,13 @@ export class RestaurantDetails extends Component {
 }
 
 const styles = StyleSheet.create({
+  dotStyle: {
+    backgroundColor: "#5c5b5b",
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    marginEnd: 10,
+  },
   basicHeaderDescStyle: {
     fontSize: scale(12),
     fontWeight: "bold",
@@ -204,6 +173,7 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: scale(14),
     fontWeight: "500",
+    textAlign: "center",
   },
   tabItemStyle: {
     height: scale(50),
