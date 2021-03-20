@@ -12,6 +12,7 @@ import PropTypes from "prop-types";
 import { Colors } from "@app/index.js";
 import { scale } from "@utilities";
 import { Images } from "../assets/images";
+import { SmartImage } from "../components";
 const Strings = require("../assets/Strings.json");
 
 export class RestaurantCard extends Component {
@@ -39,8 +40,8 @@ export class RestaurantCard extends Component {
     );
   }
 
-  onEditPress(deleteItem) {
-    this.props.onEditConfirm(deleteItem);
+  onEditPress(editItem) {
+    this.props.onEditConfirm(editItem);
   }
 
   render() {
@@ -49,7 +50,8 @@ export class RestaurantCard extends Component {
       return (
         <View style={styles.maincontainer}>
           {restaurantItemData.featured_image ? (
-            <Image
+            <SmartImage
+              placeholder={Images.restaurantPlaceholder}
               source={{ uri: restaurantItemData.featured_image }}
               style={styles.featuredImageStyle}
             />
@@ -93,6 +95,19 @@ export class RestaurantCard extends Component {
                 {restaurantItemData.cuisines}
               </Text>
             ) : null}
+            <Text
+              style={{
+                paddingVertical: scale(10),
+                fontSize: scale(12),
+                fontWeight: "bold",
+                color: Colors.warningColor,
+              }}
+              onPress={() => {
+                this.props.onViewDetailsClick(restaurantItemData);
+              }}
+            >
+              {Strings.general.View_More}
+            </Text>
           </View>
         </View>
       );

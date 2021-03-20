@@ -18,10 +18,12 @@ import { Colors } from "@app/index.js";
 import { scale } from "@utilities";
 
 import { RestaurantCard, AddEditModal } from "@components";
+import { RouteName } from "../app/app.fields";
 const Strings = require("../assets/Strings.json");
 
 export class RestaurantsListC extends Component {
   constructor(props) {
+    console.log(props, "props");
     super(props);
     this.state = {
       restaurantListData: null,
@@ -101,6 +103,11 @@ export class RestaurantsListC extends Component {
         }}
         onEditConfirm={(deleteItem) => {
           this.onEditRestaurantNameConfirmed(deleteItem);
+        }}
+        onViewDetailsClick={(restaurantData) => {
+          this.props.navigation.navigate(RouteName.RestaurantDetails, {
+            restaurantData,
+          });
         }}
       />
     );

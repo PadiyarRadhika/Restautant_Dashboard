@@ -1,1 +1,25 @@
-node_modules
+# Node or NPM or Yarn
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+node_modules/
+.eslintcache
+*.lock
+package-lock.json
+yarn.lock
+
+
+# MacOS
+.DS_Store
+
+# Build Output
+build/
+out/
+bin/
+Build/
+Index/
+
+# Xcode
+DerivedData
+ios/Pods/
+project.xcworkspace

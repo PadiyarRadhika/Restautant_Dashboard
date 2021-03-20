@@ -11,7 +11,8 @@
     "OK": "OK",
     "Update": "Update",
     "_delete_warning_msg": "Are you sure you want to delete?",
-    "error_msg": "Oops!!Something went wrong. Please come back after some time"
+    "error_msg": "Oops!!Something went wrong. Please come back after some time",
+    "View_More": "View More"
   },
   "restaurant": {
     "_add_restaurant_name_msg": "Add the restaurant name",

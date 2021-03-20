@@ -1,16 +1,36 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
-import { createBottomTabNavigator } from "react-navigation";
+import {
+  createBottomTabNavigator,
+  createStackNavigator,
+  TabNavigator,
+} from "react-navigation";
 
 import { Colors, RouteName } from "@app/index.js";
 import { scale } from "@utilities";
-import { RestaurantsList, Graph } from "../containers";
+import { RestaurantsList, Graph, RestaurantDetails } from "../containers";
 import { Images } from "@assets";
 
-export const TabStack = createBottomTabNavigator(
+export const HomeStack = createStackNavigator({
+  RestaurantsList: {
+    screen: RestaurantsList,
+  },
+  Graph: {
+    screen: Graph,
+  },
+  RestaurantDetails: {
+    screen: RestaurantDetails,
+  },
+});
+
+const TabStack = TabNavigator(
   {
-    RestaurantsList: RestaurantsList,
-    Graph: Graph
+    RestaurantsList: {
+      screen: RestaurantsList,
+    },
+    Graph: {
+      screen: Graph,
+    },
   },
   {
     navigationOptions: ({ navigation }) => ({
@@ -28,19 +48,19 @@ export const TabStack = createBottomTabNavigator(
               style={{
                 marginTop: scale(10),
                 backgroundColor: focused ? Colors.primaryColor : Colors.white,
-                borderRadius: scale(4)
+                borderRadius: scale(4),
               }}
             >
               <Image source={tabIcon} style={{ width: 50, height: 50 }} />
             </View>
           );
         } else return <View />;
-      }
+      },
     }),
     tabBarOptions: {
       showLabel: false,
-      tabStyle: { borderEndColor: Colors.border, borderEndWidth: 1 }
-    }
+      tabStyle: { borderEndColor: Colors.border, borderEndWidth: 1 },
+    },
   }
 );
 
@@ -48,7 +68,7 @@ class AppWithNavigationState extends React.Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <TabStack />
+        <HomeStack />
       </View>
     );
   }
